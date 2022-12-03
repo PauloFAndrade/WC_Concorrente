@@ -6,16 +6,14 @@ public class WC {
     // provided as input via command line or prefixed as a constant value (5)
     private int maxCapacity;
     
-    //
     private int currentCapacity; 
     
-    //
     private boolean currentGender;
     
-    //
     private LinkedHashSet<Person> person;
     
-    private Lock lock = new ReentrantLock();
+	// in a fair lock, threads acquire the lock in the order they request it
+    private Lock lock = new ReentrantLock(true);
 
 	public WC(int maxCapacity) {
 		this.maxCapacity = maxCapacity;
@@ -52,7 +50,9 @@ public class WC {
 			System.out.print(id + " entrou no");
 		}
 		System.out.println(" banheiro!");
-		System.out.println((this.maxCapacity - this.currentCapacity) + " pessoas no banheiro!");
+		System.out.print(this.maxCapacity - this.currentCapacity);
+		if((this.maxCapacity - this.currentCapacity) > 1) System.out.println(" pessoas no banheiro!");
+		else System.out.println(" pessoa no banheiro!");
 		System.out.println();
 	}
 	
@@ -78,6 +78,5 @@ public class WC {
 		printWC(person.getGender(),person.getID(),person.getFinished());
 		this.lock.unlock();
     }
-    
-    
+       
 }
