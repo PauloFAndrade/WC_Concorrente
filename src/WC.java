@@ -52,7 +52,9 @@ public class WC {
 			System.out.print(id + " entrou no");
 		}
 		System.out.println(" banheiro!");
-		System.out.println((this.maxCapacity - this.currentCapacity) + " pessoas no banheiro!");
+		System.out.print(this.maxCapacity - this.currentCapacity);
+		if((this.maxCapacity - this.currentCapacity) > 1) System.out.println(" pessoas no banheiro!");
+		else System.out.println(" pessoa no banheiro!");
 		System.out.println();
 	}
 	
