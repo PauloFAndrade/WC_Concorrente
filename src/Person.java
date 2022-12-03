@@ -1,4 +1,6 @@
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Person implements Runnable {
     // true: woman, false: man
@@ -10,11 +12,9 @@ public class Person implements Runnable {
     // person's identifier
     private int id;
     
-    // time in seconds
-    // it is random and different with each execution of the program
-    private int time;
-    
     private boolean wantUseWC = true;
+    
+    private boolean finishWC = false;
     
     private Random generator = new Random();
     
@@ -24,18 +24,18 @@ public class Person implements Runnable {
 		this.id = id;
 	}
     
-    
-    
     @Override
 	public void run() {
     	while(this.wantUseWC == true) {
     		try {
-				Thread.sleep(25);
+				Thread.sleep(500);
 				if (((this.wc.currentGender() == this.getGender())|| this.wc.isEmpty())
 	                    && !this.wc.isFull()
 	                    && !this.wc.isInWC(this)) {
 	                this.enterWC();
-	                this.leaveWC();
+	                if(this.finishWC) {
+		                this.leaveWC();
+	                }
 	            }
 			} catch (InterruptedException e) {
 				System.out.println("Error -> " + e);
@@ -47,7 +47,8 @@ public class Person implements Runnable {
     	this.wc.enterPerson(this);
     	if(this.wc.isInWC(this)) {
     		try {
-				Thread.sleep((generator.nextInt(5) + 1)*1000);
+    			TimeUnit.MILLISECONDS.sleep((generator.nextInt(5) + 1)*1000);
+    			this.finishWC = true;
 			} catch (InterruptedException e) {
 				System.out.println("Error -> " + e);
 			}
@@ -65,5 +66,13 @@ public class Person implements Runnable {
     
     public int getID() {
     	return id;
+    }
+    
+    public boolean getFinished() {
+    	return finishWC;
+    }
+    
+    public boolean getwantUseWC() {
+    	return wantUseWC;
     }
 }
