@@ -12,7 +12,8 @@ public class WC {
     
     private LinkedHashSet<Person> person;
     
-    private Lock lock = new ReentrantLock();
+	// in a fair lock, threads acquire the lock in the order they request it
+    private Lock lock = new ReentrantLock(true);
 
 	public WC(int maxCapacity) {
 		this.maxCapacity = maxCapacity;
