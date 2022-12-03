@@ -10,14 +10,14 @@ public class Manager {
                     wcMaxCapacity = Integer.parseInt(args[index]);
                 }
             }
-            if(wcMaxCapacity == -1){
+            if(wcMaxCapacity == -1) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException error) {
-            if(error instanceof NumberFormatException){
+            if(error instanceof NumberFormatException) {
                 System.out.println("The argument must be a integer");
                 System.exit(-1);
-            }else{
+            } else {
                 System.out.println("You have to pass the maximum capacity as argument using -C");
                 System.exit(-1);
             }
