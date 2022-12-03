@@ -6,10 +6,9 @@ public class Person implements Runnable {
     // true: woman, false: man
     private boolean gender;
     
-    //
     private WC wc;
     
-    // person's identifier
+    // person identifier
     private int id;
     
     private boolean wantUseWC = true;

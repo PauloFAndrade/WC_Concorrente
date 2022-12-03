@@ -6,13 +6,10 @@ public class WC {
     // provided as input via command line or prefixed as a constant value (5)
     private int maxCapacity;
     
-    //
     private int currentCapacity; 
     
-    //
     private boolean currentGender;
     
-    //
     private LinkedHashSet<Person> person;
     
     private Lock lock = new ReentrantLock();
@@ -80,6 +77,5 @@ public class WC {
 		printWC(person.getGender(),person.getID(),person.getFinished());
 		this.lock.unlock();
     }
-    
-    
+       
 }
