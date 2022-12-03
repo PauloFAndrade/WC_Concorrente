@@ -6,6 +6,7 @@ public class Manager {
 	
 	private static int idMan = 1;
 	private static int idWoman = 1;
+	private static int qtyPerson = 10;
     
     public static int getWCMaxCapacity(String[] args) {
         int wcMaxCapacity = 5;
@@ -30,16 +31,12 @@ public class Manager {
     	WC wc = new WC(getWCMaxCapacity(args));
     	List<Person> person = new ArrayList<>();
     	Random generator = new Random();
-    	
-    	//person.add(new Person(false,wc,id));
     	    	
-    	for (int i = 0; i < (generator.nextInt(10)+10); i++) {
+    	for (int i = 0; i < qtyPerson; i++) {
             if (generator.nextInt(10)%2 == 0) {
-            	System.out.println("Criou Homem...");
                 person.add(new Person(false, wc, idMan));
                 idMan++;
             } else {
-            	System.out.println("Criou Mulher...");
             	person.add(new Person(true, wc, idWoman));
                 idWoman++;
             }
